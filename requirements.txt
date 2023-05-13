@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+
+Flask==2.3.2        # Flask - web框架  
+Flask-Blueprint==1.3.0 # Flask-Blueprint可拆分应用成多个模块。蓝本可以视为应用的一部分,用于拆分大型应用成多个模块或应用。
+#Flask-SQLAlchemy==2.5.1   # Flask-SQLAlchemy - 数据库ORM
+#Flask-Migrate==3.1.0    # Flask-Migrate - 数据库迁移 
+#Flask-WTF==1.0.1   # Flask-WTF - 表单
+#Flask-Login==0.5.0    # Flask-Login - 用户认证
+#gunicorn==20.1.0     # gunicorn - 部署
+#flask-jwt-extended==4.4.3  # JSON web token 认证
+#MarkupSafe==2.0.1    # MarkupSafe是Flask依赖的一个包,提供了HTML/XML转义和HTML安全字符串处理等功能。  
+
+
+
+##typing-extensions  # 提供backports.typing模块,其中包含Mapping类型以解决collections.Mapping在低版本Python中的缺失。
+
+
+# pip freeze > requirements.txt
+
+# 项目还需要:
+# 1. env文件 - 环境变量配置
+# 2. nginx - 反向代理服务器
+# 3. WSGI服务器 - 连接Flask和WSGI协议服务器,一般选择gunicorn
+
+##推荐使用的版本，推荐的蓝本和扩展版本组合是

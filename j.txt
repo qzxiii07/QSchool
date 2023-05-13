@@ -1,0 +1,104 @@
+该项目的整体技术架构和依赖,主要包括:
+1. Flask为web框架,提供路由,模板等功能
+2. Flask-SQLAlchemy为ORM框架,方便数据模型定义和数据库交互
+3. Flask-Migrate用于数据库迁移,当模型变更时方便同步数据库schema
+4. Flask-WTF用于表单处理和验证
+5. Flask-Login用于用户认证和登录
+6. gunicorn作为WSGI服务器,用于部署项目
+7. Nginx作为反向代理,配合gunicorn部署
+8. env文件配置环境变量
+项目主要结构为:
+app: 包含模型,配置,扩展,模板,蓝图等
+requirements.txt: 依赖列表
+env: 环境配置
+wsgi.py: 启动文件
+所以总体来说,这个项目使用Flask及其扩展构建,通过gunicorn+nginx部署,使用env和requirements管理环境和依赖。
+
+项目运行所需要的核心依赖:
+1. Flask - web框架
+2. Flask-SQLAlchemy - 数据库ORM
+3. Flask-Migrate - 数据库迁移
+4. Flask-WTF - 表单
+5. Flask-Login - 用户认证
+6. gunicorn - 部署
+除此之外,项目还需要:
+1. env文件 - 环境变量配置
+2. nginx - 反向代理服务器
+3. WSGI服务器 - 连接Flask和WSGI协议服务器,一般选择gunicorn
+所以项目整体结构如下:
+.
+├── app
+│   ├── api        
+│   ├── models.py
+│   ├── config.py
+│   ├── extensions.py  
+│   ├── templates
+│   ├── web           
+│   ├── __init__.py
+│   └── manage.py
+├── requirements.txt  
+├── env
+└── wsgi.py
+
+
+一个成熟的Flask项目架构通常包含以下结构:
+1. 包目录:用于组织不同功能的模块和包
+├── models.py  # 数据模型
+├── api        # API蓝图
+│   ├── __init__.py
+│   └── views.py
+├── web        # 网站蓝图 
+│   ├── __init__.py
+│   ├── views.py
+│   └── forms.py
+├── config.py   # 配置文件
+├── extensions.py   # 扩展初始化  
+├── __init__.py
+└── manage.py   # 管理脚本(迁移,创建管理员等)
+2. 工厂函数创建应用:app = create_app('config环境变量')
+3. blueprints注册网站和API蓝图
+4. flask-migrate用于数据库迁移
+5. flask-wtf处理表单
+6. flask-login实现用户认证
+7. flask-sqlalchemy数据库ORM工具
+8. gunicorn+nginx部署
+9. requirements.txt依赖管理
+所以一个基本的Flask项目结构如下:
+.
+├── app
+│   ├── api       
+│   ├── models.py 
+│   ├── config.py
+│   ├── extensions.py
+│   ├── templates
+│   ├── web       
+│   ├── __init__.py   
+│   └── manage.py
+├── requirements.txt
+├── env  (环境变量文件)      
+└── wsgi.py
+一个成熟的项目会有以下特征:
+- MVC结构清晰:models、views、templates
+- 环境配置化:使用env文件配置和环境变量
+- 依赖管理:requirements.txt管理依赖
+- 数据库迁移:使用flask-migrate管理表结构变更
+- 表单和用户认证:flask-wtf和flask-login
+- API支持:使用蓝图实现API
+- 方便部署:gunicorn+nginx等
+- 可扩展:使用蓝图和扩展为项目添加新功能
+这是一个成熟的Flask项目架构参考,你可以遵循这些规则来构建自己的Flask项目:
+1. 分包管理项目结构
+2. 使用蓝图划分网站和API
+3. 环境配置和依赖管理
+4. 数据库和用户系统
+5. 容易部署
+这会使你的Flask项目变得更加清晰,扩展性更强,方便维护和协作开发。成熟的项目架构是高效开发的基石,Flask和相关扩展也提供了很好的支持。
+以上就是Flask成熟项目架构的一些总结和参考,你可以根据自己的需求来设计项目结构,但遵循这些规则会更容易成功。希望对你有所帮助! 
+
+
+###开局
+
+# 终端中运行
+python manage.py db init   # 初始化迁移仓库
+python manage.py db migrate -m '初始化表'  # 创建迁移
+python manage.py db upgrade  # 执行迁移,创建表
