@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+<h1>Hello World!!!!!!!!</h1>
+<nav>
+    <ul>
+        {% for item in nav %}
+        <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+        {% endfor %}
+    </ul> 
+</nav>  
+{% block content %}{% endblock %}
+</body>
+</html>
