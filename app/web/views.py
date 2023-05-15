@@ -1,15 +1,15 @@
 from flask import Blueprint, render_template
 
-web_bp = Blueprint('web', __name__)  
+web_blueprint = Blueprint('web', __name__)
 
-@web_bp.route('/')
+@web_blueprint.route('/')
 def index():
     return render_template('index.html')
 
-@web_bp.route('/about') 
+@web_blueprint.route('/about') 
 def about():
     return render_template('about.html')
 
-@web_bp.route('/contact')
+@web_blueprint.route('/contact')
 def contact():
     return render_template('contact.html')

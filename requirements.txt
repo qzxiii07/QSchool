@@ -1,10 +1,37 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- 
 
+# 梳理下我的需求列表，你不用着急实现，先设计一下需要实现哪些模块，然后我们一个个模块逐步实现能力：
+
+# 项目结构如下：
+# .
+#├── app
+#│   ├── api - API蓝图实现,使用Flask-Blueprint拆分 
+#│   ├────── api - API - auth.py - 用户认证API(注册、登录等)
+#│   ├────── api - API - xxx.py - 其他业务API
+#│   ├── models.py - 数据库ORM模型定义
+#│   ├── config.py - 配置项定义
+#│   ├── extensions.py - 第三方扩展初始化(SQLAlchemy, Migrate, JWT等)
+#│   ├── templates - 模板文件
+#│   ├── web - Web蓝图实现
+#│   ├── __init__.py 
+#│   └── manage.py
+#├── requirements.txt - 第三方包依赖
+#├── env - 虚拟环境
+#└── wsgi.py - 项目WSGI入口
+
+# 数据库名字为：mydatabase；5个表:Student,Major,Course,Selection,Teacher，如何添加到上面的项目中
+
+
+# requirements.txt的第三方库如下,
+# 实现数据库迁移和初始化，数据库名字为：mydatabase，使用数据库为mysql
+# 请推荐扩容的库和扩展版本组合后，重构requirements.txt：
 Flask==2.3.2        # Flask - web框架  
 Flask-Blueprint==1.3.0 # Flask-Blueprint可拆分应用成多个模块。蓝本可以视为应用的一部分,用于拆分大型应用成多个模块或应用。
-#Flask-SQLAlchemy==2.5.1   # Flask-SQLAlchemy - 数据库ORM
-#Flask-Migrate==3.1.0    # Flask-Migrate - 数据库迁移 
+Flask-SQLAlchemy==3.0.3   # Flask-SQLAlchemy - 数据库ORM 2.5.1
+Flask-Migrate==2.7.0   # Flask-Migrate - 数据库迁移 3.1.0 2.7.0
+mysql-connector-python>= 8.0.33 # mysql数据库连接
+Flask-Admin>=1.6.1 # 功能齐全、简单易用的Flask扩展，让您可以为Flask应用程序增加管理界面
 #Flask-WTF==1.0.1   # Flask-WTF - 表单
 #Flask-Login==0.5.0    # Flask-Login - 用户认证
 #gunicorn==20.1.0     # gunicorn - 部署
@@ -23,4 +50,21 @@ Flask-Blueprint==1.3.0 # Flask-Blueprint可拆分应用成多个模块。蓝本�
 # 2. nginx - 反向代理服务器
 # 3. WSGI服务器 - 连接Flask和WSGI协议服务器,一般选择gunicorn
 
-##推荐使用的版本，推荐的蓝本和扩展版本组合是
+##推荐的xxx和扩展版本组合是
+
+## 数据库基础班
+# Student:学生表,存储学生信息
+# Major:专业表,存储专业信息 
+# Course:课程表,存储课程信息,外键关联专业表
+# Selection:选课表,存储学生选课信息,外键关联学生表和课程表
+# Teacher:教师表,存储教师信息,外键关联专业表
+# 模型之间的关系:
+# 1. 学生表和专业表是一对多的关系,一个专业有多个学生
+# 2. 课程表和专业表是一对多的关系,一个专业有多个课程 
+# 3. 选课表、学生表和课程表是多对多的关系,一个学生可以选择多门课程,一门课程也可以被多名学生选择
+# 4. 教师表和专业表是一对多的关系,一个专业有多个教师
+
+
+# python -m pip install --upgrade pip  # 升级pip 
+# pip install -U pip setuptools wheel  # 更新依赖关系
+# pip install -r requirements.txt     # 重新安装

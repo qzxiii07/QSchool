@@ -1,0 +1,8 @@
+flask_script
+报错：ModuleNotFoundError: No module named 'flask._compat'
+解决方法：“Python\Python311\Lib\site-packages\flask_script\__init__.py", line 15”修改为下方代码
+from flask_script._compat import text_type
+
+
+报错：ImportError: cannot import name ‘MigrateCommand’ from ‘flask_migrate’ (D:\env\flask_pro_env1\lib\site-packages\flask_mi grate_init_.py)
+解决方法：安装flask-migrate==2.7.0版本的
